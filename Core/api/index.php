@@ -1,4 +1,5 @@
 <?php 
+	#ini_set('display_errors',1);
 	include "common.php";
 	include "API.php";
 	include "Stories.php";
@@ -17,7 +18,7 @@
 				echo json_encode($CONFIG);
 			} else {
 				foreach($CONFIG as $k=>$v) {
-					if($k == 'WEBHOMEDIR' || $k == 'MOBILEHOMEDIR' || $k == 'PROFANITY') continue;
+					if($k == 'PROFANITY') continue;
 					$CONFIG[$k] = '';
 				}
 				echo json_encode($CONFIG);
@@ -47,62 +48,24 @@
 				$story_data = $story->create_story($story_data);
 			}
 			echo json_encode($story_data);
-			break;		
-			
-		case 'check_profanity':
-			$records = array();
-			$records['error'] = 'no';
-			if(empty($story->profanity_words)) {
-				$url = 'http://www.wdyl.com/profanity?q=%s';
-				if($req_vars['story_title']) {
-					$f_url = sprintf($url,$req_vars['story_title']);
-					$jsondata = file_get_contents($f_url);
-					$result = json_decode($jsondata);
-					if($result->response == 'true') {
-						$records['story_title'] = 1;
-						$records['error'] = 'yes';
-					}
-				}
-				if($req_vars['story_description']) {
-					$f_url = sprintf($url,$req_vars['story_description']);
-					$jsondata = file_get_contents($f_url);
-					$result = json_decode($jsondata);
-					if($result->response == 'true') {
-						$records['story_description'] = 1;
-						$records['error'] = 'yes';
-					}
-				}
-				if($req_vars['first_name']) {
-					$f_url = sprintf($url,$req_vars['first_name']);
-					$jsondata = file_get_contents($f_url);
-					$result = json_decode($jsondata);
-					if($result->response == 'true') {
-						$records['first_name'] = 1;
-						$records['error'] = 'yes';
-					}
-				}
-				
-			} else {
-				if($req_vars['story_title']) {
-					if(in_array($req_vars['story_title'],$story->profanity_words)) {
-						$records['story_title'] = 1;
-						$records['error'] = 'yes';
-					}
-				}
-				if($req_vars['story_description']) {
-					if(in_array($req_vars['story_description'],$story->profanity_words)) {
-						$records['story_description'] = 1;
-						$records['error'] = 'yes';
-					}
-				}
-				if($req_vars['first_name']) {
-					if(in_array($req_vars['first_name'],$story->profanity_words)) {
-						$records['first_name'] = 1;
-						$records['error'] = 'yes';
-					}
-				}
+			break;
+		
+		/*
+		* @Get butterfly images
+		*/
+		case 'get_butterfly_ids' :
+			$file_ids = array();
+			// get GridFS files collection
+			$grid = $story->db->getGridFS();
+			foreach($grid->find(array('i_type' => 'butterfly'),array("_id"))->sort(array('$natural' => -1)) as $v) {
+				$file_ids[] = $v->file;
 			}
-			echo json_encode($records);
+			echo json_encode($file_ids);
+			break;
+		
+		//Butterfly images
+		case "butterflyimage" :
+			include "image.php";
 			break;
 	}
 	$jason_data = ob_get_contents();

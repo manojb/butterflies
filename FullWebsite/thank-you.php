@@ -17,7 +17,8 @@
 		$story_content 	= json_decode($stories);
 		$title 			= isset($story_content->story_title) ? $story_content->story_title : '';
 		$description 	= isset($story_content->story_description) ? $story_content->story_description : '';
-		$image 			= isset($story_content->card_type) ? HOMEURL."/images/".$story_content->card_type : '';
+		#$image 		= isset($story_content->card_type) ? HOMEURL."/images/".$story_content->card_type : '';
+		$image 			= APIURL."?action=butterflyimage&id=".$story_content->card_type;
 		$url			= HOMEURL."?id=".$_GET['id'];
 	?>
 	<div class="share-message-thankyou-wrapper">
@@ -36,7 +37,6 @@
 				<div>
 					<div class="thankyou-wrapper-image">
 						<img src="<?php echo $image?>" alt="">
-						
 					</div>
 					<div class="thankyou-wrapper-title"><?php echo $title?></div>
 					<div class="thankyou-wrapper-message">

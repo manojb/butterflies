@@ -45,8 +45,7 @@ function getPreviewContent(){
 		if(radio_obj[i].checked)
 			card_type = radio_obj[i].value;
 	}
-	
-	$("#preview-butterfly-image img").attr('src',homeurl+'/images/'+card_type);
+	$("#preview-butterfly-image img").attr('src',$("#bf_"+card_type).attr('src'));
 	$("#preview-butterfly-title").html(s_title);
 	$("#preview-butterfly-message").html(s_description);
 	$("#preview-butterfly-person-state span").html(first_name);

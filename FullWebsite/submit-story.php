@@ -20,7 +20,15 @@
 		<span class="required">* Required</span>
 		
 		<div class="buterfly-radio-wrapper" id="card_type_div">
-			<label>
+			<?php $butterfly_ids_json = file_get_contents(APIURL."?action=get_butterfly_ids");?>
+			<?php foreach(json_decode($butterfly_ids_json,1) as $b) : ?>
+				<?php $bid = $b['_id']['$id']?>
+				<label>
+					<img src="<?php echo APIURL."?action=butterflyimage&id=".$bid?>" id="bf_<?php echo $bid?>">
+					<input type="radio" name="data[card_type]" value="<?php echo $bid?>" <?php if($card_type == $bid) echo "checked='checked'";?> />
+				</label>
+			<?php endforeach?>
+<!-- 			<label>
 				<img src="images/butterfly1.jpg">
 				<input type="radio" name="data[card_type]" value="butterfly1.jpg" <?php if($card_type == 'butterfly1.jpg') echo "checked='checked'";?> />
 			</label>
@@ -40,6 +48,7 @@
 				<img src="images/butterfly5.jpg">
 				<input type="radio" name="data[card_type]" value="butterfly5.jpg" <?php if($card_type == 'butterfly5.jpg') echo "checked='checked'";?> />
 			</label>
+-->
 		</div>
 		
 		<!-- <br>
