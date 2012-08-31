@@ -45,24 +45,15 @@
 				return $this->db->stories->findOne(array('_id' => new MongoId($args['id'])));
 			} else {
 				$res = array();
+				$res['total_records'] 	= $this->db->stories->count();
 				foreach($this->db->stories->find() as $v) {
-					$res[] = $v;
+					$row[] = $v;
 				}
+				$res['data'] = $row;
 				return $res;
 			}
 		}
 		
-		/**
-		*
-		* Get story list.
-		* @param array $param data 
-		* @return array
-		*
-		*/		
-		public function get_stories_cursor() {
-			return $this->db->stories->find();
-		}
-
 
 		public function get_file($mongo_file_id = '') {
 			$grid = $this->db->getGridFS();
