@@ -6,3 +6,4 @@ Chicos Fas LBBC / Butterflies
 3. Set the config values if need in environments files
 4. Before this ensure that your mongodb installed and configure correctly and environment file have the correct informationabout this.
 5. For the profanity words check you can modify the profanity variable in API/environment.php file
+6. If leave the variable as blank it will validated throught a third party url
