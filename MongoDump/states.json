@@ -1,0 +1,50 @@
+{ "_id" : { "$oid" : "503c7051dcba312407000005" }, "sid" : "1", "long_name" : "Alabama", "short_name" : "AL" }
+{ "_id" : { "$oid" : "503c7062dcba312407000006" }, "sid" : "2", "long_name" : "Alaska", "short_name" : "AK" }
+{ "_id" : { "$oid" : "503c706cdcba312407000007" }, "sid" : "3", "long_name" : "Arizona", "short_name" : "AZ" }
+{ "_id" : { "$oid" : "503c7079dcba312407000008" }, "sid" : "4", "long_name" : "Arkansas", "short_name" : "AR" }
+{ "_id" : { "$oid" : "503c7087dcba312407000009" }, "sid" : "5", "long_name" : "California", "short_name" : "CA" }
+{ "_id" : { "$oid" : "503c70f0dcba31240700000a" }, "sid" : "6", "long_name" : "Colorado", "short_name" : "CO" }
+{ "_id" : { "$oid" : "503c7103dcba31240700000b" }, "sid" : "7", "long_name" : "Connecticut", "short_name" : "CT" }
+{ "_id" : { "$oid" : "503c7110dcba31240700000c" }, "sid" : "8", "long_name" : "Delaware", "short_name" : "DE" }
+{ "_id" : { "$oid" : "503c711cdcba31240700000d" }, "sid" : "9", "long_name" : "Florida", "short_name" : "FL" }
+{ "_id" : { "$oid" : "503c7126dcba31240700000e" }, "sid" : "10", "long_name" : "Georgia", "short_name" : "GA" }
+{ "_id" : { "$oid" : "503c7131dcba31240700000f" }, "sid" : "11", "long_name" : "Hawaii", "short_name" : "HI" }
+{ "_id" : { "$oid" : "503c713adcba312407000010" }, "sid" : "12", "long_name" : "Idaho", "short_name" : "ID" }
+{ "_id" : { "$oid" : "503c7148dcba312407000011" }, "sid" : "13", "long_name" : "Illinois", "short_name" : "IL" }
+{ "_id" : { "$oid" : "503c7154dcba312407000012" }, "sid" : "14", "long_name" : "Indiana", "short_name" : "IN" }
+{ "_id" : { "$oid" : "503c715ddcba312407000013" }, "sid" : "15", "long_name" : "Iowa", "short_name" : "IA" }
+{ "_id" : { "$oid" : "503c716adcba312407000014" }, "sid" : "16", "long_name" : "Kansas", "short_name" : "KS" }
+{ "_id" : { "$oid" : "503c7174dcba312407000015" }, "sid" : "17", "long_name" : "Kentucky", "short_name" : "KY" }
+{ "_id" : { "$oid" : "503c7181dcba312407000016" }, "sid" : "18", "long_name" : "Louisiana", "short_name" : "LA" }
+{ "_id" : { "$oid" : "503c718bdcba312407000017" }, "sid" : "19", "long_name" : "Maine", "short_name" : "ME" }
+{ "_id" : { "$oid" : "503c7194dcba312407000018" }, "sid" : "20", "long_name" : "Maryland", "short_name" : "MD" }
+{ "_id" : { "$oid" : "503c71a2dcba312407000019" }, "sid" : "21", "long_name" : "Massachusetts", "short_name" : "MA" }
+{ "_id" : { "$oid" : "503c71b2dcba31240700001a" }, "sid" : "22", "long_name" : "Michigan", "short_name" : "MI" }
+{ "_id" : { "$oid" : "503c71bbdcba31240700001b" }, "sid" : "23", "long_name" : "Minnesota", "short_name" : "MN" }
+{ "_id" : { "$oid" : "503c71c4dcba31240700001c" }, "sid" : "24", "long_name" : "Mississippi", "short_name" : "MS" }
+{ "_id" : { "$oid" : "503c71cfdcba31240700001d" }, "sid" : "25", "long_name" : "Missouri", "short_name" : "MO" }
+{ "_id" : { "$oid" : "503c71dadcba31240700001e" }, "sid" : "26", "long_name" : "Montana", "short_name" : "MT" }
+{ "_id" : { "$oid" : "503c71e7dcba31240700001f" }, "sid" : "27", "long_name" : "Nebraska", "short_name" : "NE" }
+{ "_id" : { "$oid" : "503c71f1dcba312407000020" }, "sid" : "28", "long_name" : "Nevada", "short_name" : "NV" }
+{ "_id" : { "$oid" : "503c71fddcba312407000021" }, "sid" : "29", "long_name" : "New Hampshire", "short_name" : "NH" }
+{ "_id" : { "$oid" : "503c7212dcba312407000022" }, "sid" : "30", "long_name" : "New Jersey", "short_name" : "NJ" }
+{ "_id" : { "$oid" : "503c721edcba312407000023" }, "sid" : "31", "long_name" : "New Mexico", "short_name" : "NM" }
+{ "_id" : { "$oid" : "503c7229dcba312407000024" }, "sid" : "32", "long_name" : "New York", "short_name" : "NY" }
+{ "_id" : { "$oid" : "503c7233dcba312407000025" }, "sid" : "33", "long_name" : "North Carolina", "short_name" : "NC" }
+{ "_id" : { "$oid" : "503c723edcba312407000026" }, "sid" : "34", "long_name" : "North Dakota", "short_name" : "ND" }
+{ "_id" : { "$oid" : "503c7249dcba312407000027" }, "sid" : "35", "long_name" : "Ohio", "short_name" : "OH" }
+{ "_id" : { "$oid" : "503c7254dcba312407000028" }, "sid" : "36", "long_name" : "Oklahoma", "short_name" : "OK" }
+{ "_id" : { "$oid" : "503c725ddcba312407000029" }, "sid" : "37", "long_name" : "Oregon", "short_name" : "OR" }
+{ "_id" : { "$oid" : "503c7266dcba31240700002a" }, "sid" : "38", "long_name" : "Pennsylvania", "short_name" : "PA" }
+{ "_id" : { "$oid" : "503c726fdcba31240700002b" }, "sid" : "39", "long_name" : "Rhode Island", "short_name" : "RI" }
+{ "_id" : { "$oid" : "503c7279dcba31240700002c" }, "sid" : "40", "long_name" : "South Carolina", "short_name" : "SC" }
+{ "_id" : { "$oid" : "503c7284dcba31240700002d" }, "sid" : "41", "long_name" : "South Dakota", "short_name" : "SD" }
+{ "_id" : { "$oid" : "503c728edcba31240700002e" }, "sid" : "42", "long_name" : "Tennessee", "short_name" : "TN" }
+{ "_id" : { "$oid" : "503c7299dcba31240700002f" }, "sid" : "43", "long_name" : "Texas", "short_name" : "TX" }
+{ "_id" : { "$oid" : "503c72a4dcba312407000030" }, "sid" : "44", "long_name" : "Utah", "short_name" : "UT" }
+{ "_id" : { "$oid" : "503c72b6dcba312407000031" }, "sid" : "45", "long_name" : "Vermont", "short_name" : "VT" }
+{ "_id" : { "$oid" : "503c72c3dcba312407000032" }, "sid" : "46", "long_name" : "Virginia", "short_name" : "VA" }
+{ "_id" : { "$oid" : "503c72ccdcba312407000033" }, "sid" : "47", "long_name" : "Washington", "short_name" : "WA" }
+{ "_id" : { "$oid" : "503c72d7dcba312407000034" }, "sid" : "48", "long_name" : "West Virginia", "short_name" : "WV" }
+{ "_id" : { "$oid" : "503c72e1dcba312407000035" }, "sid" : "49", "long_name" : "Wisconsin", "short_name" : "WI" }
+{ "_id" : { "$oid" : "503c72ebdcba312407000036" }, "sid" : "50", "long_name" : "Wyoming", "short_name" : "WY" }
