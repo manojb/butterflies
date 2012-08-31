@@ -78,6 +78,7 @@ class environment
 
 				/*
 				* @Profanity words
+				*self::$profanity_words = array("word1","word2");
 				*/
 				self::$profanity_words = array();
 

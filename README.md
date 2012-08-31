@@ -1,9 +1,8 @@
-Chicos Fas LBBC / Butterflies
+Chicos FAS LBBC / Butterflies
 ===========
-
-1. Create a Rest API to implement the common business logics for two versions such as Web Version and Mobile Version
-2. After unzip files open Current_environment.php and environment.php file for each version(Like: API, Full Website, Mobile Website).
-3. Set the config values if need in environments files
-4. Before this ensure that your mongodb have installed and configured correctly and environment file have the correct info
-5. For the profanity words check you can modify the profanity variable in API/environment.php file
-6. If leave the variable as blank it will validated throught a third party url
+1. Please look at the "HighLevelArchitecture.png" to understand how we have structured the applications.
+2. The Core API is a REST service with common business and data access layers to be used by both versions of the website.
+3. Database connections and Naughty words list can be set in Core/api/config/environment.php
+	a. If the naughty word list is not set, the application checks for profane words from http://www.wdyl.com/profanity
+4. API URL and Facebook credentials can be set in FullWebsite/config/environment.php
+5. The mongodump for the master values (US States, Butterflies) is provided.
