@@ -29,6 +29,16 @@
 			echo json_encode($story_list);
 			break;
 
+		case 'total_stories_by_name':
+			$story_list = $story->total_stories_by_name($req_vars['search_string']);
+			echo json_encode($story_list);
+			break;
+
+		case 'stories_ajax_html':
+			$story_html = $story->get_stories_html($req_vars);
+			echo json_encode($story_html);
+			break;
+
 		case 'get_stories_cursor':
 			$story_cursor = $story->get_stories_cursor();
 			echo json_encode($story_cursor);

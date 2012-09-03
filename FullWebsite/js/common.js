@@ -3,6 +3,7 @@ $(function(){
 		$('#overlay').css('opacity',0);	
 	}
 	$('#btnpreview').click(function(){
+	  makeHCenter('preview-butterfly');										
 		getPreviewContent();									
 		$('#preview-butterfly').fadeIn('slow');
 		showOverlay();	
@@ -14,8 +15,13 @@ $(function(){
 	});
 	
 	$('#popup-edit').click(function(){
+		 makeHCenter('preview-butterfly');									
 	 	$('#preview-butterfly').fadeOut('slow');
 		$('#overlay').fadeOut(750);							
+	});
+	
+	$('.terms').click(function(){
+		showTerms();					   
 	});
 });// end of $ function
 
@@ -62,4 +68,141 @@ function hideMessage(hideid,showid) {
 	$("#"+showid).show();
 }
 
+function readMoreWall(showid,hideid) {
+	//alert("fullview_div : "+fullview_div+" summerydiv : "+summerydiv);
+	if(fullview_div != '') $("#"+summerydiv).show();
+	if(summerydiv != '') $("#"+fullview_div).hide();
+		
+	fullview_div = showid;
+	summerydiv = hideid;
+	$("#"+hideid).hide();
+	$("#"+showid).slideDown('slow');
+}
 
+function hideMessageWall(hideid,showid) {
+	fullview_div = "";
+	summerydiv = "";
+	$("#"+hideid).slideUp('slow');
+	$("#"+showid).show();
+}
+
+/*
+* @Load wall during home page load or sorting record or search by name
+*/
+function loadWallMessage(reset_option) {
+	var total_records = $("#total_records").val();
+	if(parseInt(reset_option) == 1 ) {
+		$("#wallcol1").html('');
+		$("#wallcol2").html('');
+		$("#wallcol3").html('');
+		
+	}
+	var st_limit = 0;
+	var ed_limit = 6;
+	total_records = parseInt(total_records);
+	if(total_records > 0) {
+		if(ed_limit > total_records) {
+			ed_limit = total_records;
+		}
+		//alert("total_records + st_limit + ed_limit :: " +  total_records +' : '+ st_limit +' : '+ ed_limit);		
+		createCookie('c_limit',6);
+		for(var i = parseInt(st_limit); i < parseInt(ed_limit); i++) {
+			var div_ch 		= (i%3);
+			var div_html 	= '<div class="wallpost" id="item-'+i+'"><div class="loader"></div></div>';
+			switch(div_ch) {
+				case 0 :
+					$("#wallcol1").append(div_html);
+					break;
+				case 1 :
+					$("#wallcol2").append(div_html);
+					break;
+				case 2 :
+					$("#wallcol3").append(div_html);
+					break;
+			}
+		}
+		loadContent (st_limit,ed_limit,6);
+	}
+}
+
+
+/*
+* @Search wall message by story title
+*/
+function searchWallMessage () {
+	var total_records = $("#total_records").val();
+	var search_string = $("#search_string").val();
+	$.post(apiurl,{action : 'total_stories_by_name', search_string : search_string},function(json_obj_count) {
+		if(json_obj_count){
+			$("#total_records").val(json_obj_count.total_records);			
+			loadWallMessage(1);
+		}
+	},"json");
+}
+
+
+/*
+* @Ajax call + Fill the content into blank loader divs 
+*/
+function loadContent (st_limit,ed_limit,limit) {
+	var order = $("#sort_option").val();
+	var search_string = $("#search_string").val();
+	createCookie('loop_limit',ed_limit);
+	$.post(apiurl,{action : 'stories_ajax_html', order_by:'_id',order:order,search_by:'story_title',search_string : search_string,st_limit : st_limit, ed_limit:ed_limit, limit:limit,apiurl:apiurl},function(html) {
+		if(html){
+			$.each(html, function(i, json_obj) {
+				$("#"+json_obj.id).html(json_obj.html).fadeIn('slow');
+				//setTimeout(function(){$("#" + val.id).hide().html(val.html).fadeIn('slow')},3000);
+			});
+		}else{
+			$('div.end_loader').html('<h1>No more posts to show.</h1>');
+		}
+	},"json");
+}
+
+/*
+* @Create cookie
+*/		
+function createCookie(name,value,days) {
+	if (days) {
+		var date = new Date();
+		date.setTime(date.getTime()+(days*24*60*60*1000));
+		var expires = "; expires="+date.toGMTString();
+	}
+	else var expires = "";
+	document.cookie = name+"="+value+expires+"; path=/";
+}
+
+/*
+* @Get cookie
+*/		
+function readCookie(name) {
+	var nameEQ = name + "=";
+	var ca = document.cookie.split(';');
+	for(var i=0;i < ca.length;i++) {
+		var c = ca[i];
+		while (c.charAt(0)==' ') c = c.substring(1,c.length);
+		if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+	}
+	return null;
+}
+
+/*
+* @Delete cookie
+*/		
+function eraseCookie(name) {
+	createCookie(name,"",-1);
+}
+
+
+
+function makeHCenter(objId){
+var halfHeight = parseInt($('#'+objId).height()/2);	
+$('#'+objId).css('margin-top','-'+halfHeight+'px');
+return;
+}
+function showTerms(){
+ makeHCenter('terms');
+ $('#terms').fadeIn('slow');	
+ showOverlay();
+}

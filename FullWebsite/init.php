@@ -1,6 +1,7 @@
 <?php 
 	ini_set('display_errors',1);
 	$action = isset($_REQUEST['action']) ? $_REQUEST['action'] : '';
+
 	switch ($action) {
 		case "insert_story" : 
 			$data = $_POST['data'];

@@ -35,6 +35,18 @@
 		
 		/**
 		*
+		* Get total no of stories.
+		* @param string $name 
+		*
+		*/		
+		public function total_stories_by_name($str='') {
+			$res = array();
+			$res['total_records'] = $this->db->stories->find(array('story_title'=>$str))->count();
+			return $res;
+		}
+		
+		/**
+		*
 		* Get story list.
 		* @param array $param data 
 		* @return array
@@ -54,15 +66,37 @@
 			}
 		}
 		
+		/*
+		*
+		* @ Return story html to set in wall page to replace loader image
+		*
+		*/
+		function get_stories_html($req_vars) {
+			$jason_array = '';
+			$session_limit = $req_vars['st_limit'];
+			$st_limit = $req_vars['st_limit'];
+			//array($req_vars['search_by'] => $req_vars['search_string'])
+			if((int)($st_limit) == 0) {
+				$story_cursor = $this->db->stories->find()->sort(array($req_vars['order_by'] => (int)$req_vars['order']))->limit((int)$req_vars['limit']);
+			} else {
+				$story_cursor = $this->db->stories->find()->sort(array($req_vars['order_by'] => (int)$req_vars['order']))->limit($req_vars['limit'])->skip((int)($st_limit));
+			}
+			
+			foreach($story_cursor as $k=>$v) {
+			//foreach($this->db->stories->find() as $k=>$v) {
+				$title 			= isset($v['story_title']) ? $v['story_title'] : '';
+				$description 	= isset($v['story_description']) ? $v['story_description'] : '';
+				$image 			= $req_vars['apiurl']."/?action=butterflyimage&id=".$v['card_type'];
+				$name 			= (isset($v['first_name']) && $v['first_name'] != '') ? $v['first_name'] : 'Anonymous';
+				$state 			= (isset($v['state']) && $v['state'] != '') ? ', '.$v['state'] : '';
 
-		public function get_file($mongo_file_id = '') {
-			$grid = $this->db->getGridFS();
-			$image = $grid->findOne($mongo_file_id);
-			header('Content-type: image/jpeg');
-			echo $image->getBytes();
-			exit;
+				$jason_array[$k]['id']	= 'item-'.$session_limit;
+				$jason_array[$k]['html'] = "<div class='top'></div><div class='content'><div><div class='image-wrapper'><img src='$image' alt='' /></div><h3 class='title'>$title</h3><div id='summary".$session_limit."'><div class='message'><p>".$this->wrap_text($description)." <a href='javascript:void(0)'  onclick='readMoreWall(\"fullview".$session_limit."\",\"summary".$session_limit."\");'>Read More &gt;</a></p></div><div class='person-state'> - <span>$name</span><label>$state</label></div></div><div id='fullview".$session_limit."' class='fullview'><div class='message'><p>$description<span><a href='javascript:void(0)' onclick='hideMessageWall(\"fullview".$session_limit."\",\"summary".$session_limit."\");'>Hide Message</a></span></p></div><div class='person-state'> - <span>$name</span><label>$state</label></div><div class='share-message'><span class='wallpost-share-message-text'>Share this Message On:</span><span class='social-button-wrapper'><a title='Facebook' class='facebook' href='#'></a><a title='Twitter' class='twitter' href='#'></a><a title='Pinterest' class='pinterest' href='#'></a><a title='Google +' class='googleplus' href='#'></a></span></div></div></div></div><div class='bottom'></div>";
+				$session_limit++;
+			}
+			return $jason_array;
 		}
-
+		
 		/**
 		*
 		* Creates a new story.
@@ -103,16 +137,17 @@
 			);
 		}
 
-		/**
-		*
-		* Delete story.
-		* @param string $story_id 
-		* @return boolian on success
-		*
-		*/		
-		public function delete_story($story_id) {
-			
+		/*
+		* @Wrap Text
+		*/
+		function wrap_text($text,$position=90) {
+			$length = strlen($text);
+			$str = substr($text, 0, $position); 
+			if($length > $position)
+				$str .= '...';
+			return $str;
 		}
+
 		
 		function get_states () {
 			$res = array();
