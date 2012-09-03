@@ -140,7 +140,7 @@ a.terms { float: right; font-size: 15px;font-family: 'Josefin Sans';}
 
 /* overlay popup */
 #overlay { position: fixed; top: 0; left: 0; background: #000; width: 100%; height: 100%; display: none; z-index: 99999;}
-.popup {width: 502px; position: absolute; background: #fff; left: 50%; top: 90px; margin: 0 0 0 -300px;  z-index: 100000; padding: 70px 49px 49px; display: none;
+.popup {width: 502px; position: absolute; background: #fff; left: 50%;top: 50%;  margin: 0 0 0 -300px;  z-index: 100000; padding: 70px 49px 49px; display: none;
 -webkit-box-shadow: 0 0 20px #333;
 -moz-box-shadow: 0 0 20px #333;
 box-shadow: 0 0 20px #333;
@@ -170,6 +170,15 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fffbfc', end
 
 .popup-close { position: absolute; width: 19px; height: 19px; background:url(../images/popup-close.png) no-repeat; top: 8px; right: 10px;}
 
+
+.popup-content {color: #000; }
+.popup-content h3 { font-family: Prata; font-size: 30px; float: left; }
+.date-updated { float: right; font-family: 'Josefin Sans'; font-size: 14px; line-height: 15px; margin: 14px 0 20px;}
+
+.terms-popup { padding: 49px; }
+.colored-scroll-popup {clear: both; height: 250px; overflow: auto; }
+.colored-scroll-popup p { margin-bottom: 20px;font-family: 'Josefin Sans'; font-size: 14px; line-height: 17px;}
+.colored-scroll-popup h4 { font-family: Prata; font-size: 15px; text-transform: uppercase; padding-top: 20px; margin-bottom: 20px;}
 /* end popup */
 
 .thankyou-wrapper { float: left; width: 510px; clear: left;}
@@ -177,7 +186,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fffbfc', end
 
 .share-message-thankyou-wrapper { width: 266px; border-top: 1px solid #f9c6d6; float: right; padding-top: 15px; margin-top: 6px;}	
 .share-message-text {color: #333; text-transform: uppercase; line-height: 13px;font-family: 'Josefin Sans'; font-weight: bold; font-size: 12px; float: left;}
-.social-button-wrapper { float: right; text-align: right;}
+.social-button-wrapper { float: right; text-align: right; position: relative; z-index: 10;}
 .social-button-wrapper a { display: inline-block; height: 19px; text-decoration: none; margin-left: 1px;}
 .social-button-wrapper a.facebook { width: 9px; background:url(../images/social-icons-sprite.png)  no-repeat; }
 .social-button-wrapper a.twitter { width: 21px; background:url(../images/social-icons-sprite.png) -13px 0 no-repeat; }
@@ -290,3 +299,10 @@ overflow: hidden;
 
 #wall-first-post-wrapper { height: 299px; background:url(../images/ribbon-bg.png) center center no-repeat; text-align: center; padding-top: 1px;}
 #wall-first-post-wrapper span { display: block; text-align: center; font-family: Prata; font-size: 17px; color: #000; margin: 100px 0 25px;}
+
+/* buterfly animation */
+#thankyou-page { min-height: 640px; overflow: hidden; position: relative;}
+#animation-stage { background: #fff; position: absolute; z-index: 99999; width: 810px; left: 0; top: 0; height: 640px;}
+
+#butterfly1 { background:url(../images/animation/butterfly1.png) no-repeat; width: 200px; height: 166px; position: absolute; top: 640px; left: 320px;  z-index:100000;}
+#butterfly2 { background:url(../images/animation/butterfly2.png) no-repeat; width: 310px; height: 196px; position: absolute; top: 640px; left: 270px;  z-index: 100000;}
