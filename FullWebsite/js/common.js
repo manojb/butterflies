@@ -37,7 +37,9 @@ function showOverlay(){
 
 function getPreviewContent(){
 	var s_title 		= $.trim($("#s_title").val());
-	var s_description 	= $.trim($("#s_description").val());
+	var s_description 	= $.trim($("#s_description").val()).replace(/\n/g,"<br>");
+	//var s_description 	= $.trim($("#s_description").val()).replace("\n",String.fromCharCode(13));
+	//var s_description 	= $.trim($("#s_description").val());
 	var first_name 		= $.trim($("#first_name").val());
 	var state_id 		= $("#state_id").val();
 	var card_type 		= '';
@@ -48,10 +50,11 @@ function getPreviewContent(){
 		
 	var radio_obj = document.story_submit_form["data[card_type]"];
 	for(var i=0; i<radio_obj.length; i++) {
-		if(radio_obj[i].checked)
+		if(radio_obj[i].checked) {
 			card_type = radio_obj[i].value;
+			$("#preview-butterfly-image img").attr('src',$("#bf_"+card_type).attr('src'));
+		}
 	}
-	$("#preview-butterfly-image img").attr('src',$("#bf_"+card_type).attr('src'));
 	$("#preview-butterfly-title").html(s_title);
 	$("#preview-butterfly-message").html(s_description);
 	$("#preview-butterfly-person-state span").html(first_name);
@@ -65,7 +68,7 @@ function readMore(showid,hideid) {
 
 function hideMessage(hideid,showid) {
 	$("#"+hideid).slideUp('slow');
-	$("#"+showid).show();
+	$("#"+showid).slideDown('slow')
 }
 
 function readMoreWall(showid,hideid) {
@@ -83,13 +86,13 @@ function hideMessageWall(hideid,showid) {
 	fullview_div = "";
 	summerydiv = "";
 	$("#"+hideid).slideUp('slow');
-	$("#"+showid).show();
+	$("#"+showid).slideDown('slow');
 }
 
 /*
 * @Load wall during home page load or sorting record or search by name
 */
-function loadWallMessage(reset_option) {
+function loadWallMessage(reset_option,search_option) {
 	var total_records = $("#total_records").val();
 	if(parseInt(reset_option) == 1 ) {
 		$("#wallcol1").html('');
@@ -121,7 +124,7 @@ function loadWallMessage(reset_option) {
 					break;
 			}
 		}
-		loadContent (st_limit,ed_limit,6);
+		loadContent (st_limit,ed_limit,6,search_option);
 	}
 }
 
@@ -132,10 +135,23 @@ function loadWallMessage(reset_option) {
 function searchWallMessage () {
 	var total_records = $("#total_records").val();
 	var search_string = $("#search_string").val();
+	$("#search_string").attr('class',"");
+	$("#search_error_span").attr('class',"");
+	$("#search_error_span").html("");
 	$.post(apiurl,{action : 'total_stories_by_name', search_string : search_string},function(json_obj_count) {
 		if(json_obj_count){
-			$("#total_records").val(json_obj_count.total_records);			
-			loadWallMessage(1);
+			total_records = json_obj_count.total_records;
+			if(parseInt(total_records) > 0 ) {
+				//alert(total_records);
+				$("#total_records").val(total_records);			
+				$("#search_text_for_sort").val(search_string);			
+				loadWallMessage(1,'search');
+			} else {
+				//alert("No records found - " + total_records);
+				$("#search_string").attr('class','error');
+				$("#search_error_span").attr('class','error');
+				$("#search_error_span").html("Sorry. \""+search_string+"\" was not found");
+			}
 		}
 	},"json");
 }
@@ -144,11 +160,19 @@ function searchWallMessage () {
 /*
 * @Ajax call + Fill the content into blank loader divs 
 */
-function loadContent (st_limit,ed_limit,limit) {
+function loadContent (st_limit,ed_limit,limit,search_option) {
 	var order = $("#sort_option").val();
-	var search_string = $("#search_string").val();
+	if(search_option == 'sortsearch') {
+		var search_string = $("#search_text_for_sort").val();
+		if(search_string != '') {
+			search_option = 'search';
+		}
+	} else {
+		var search_string = $("#search_string").val();
+	}
+		
 	createCookie('loop_limit',ed_limit);
-	$.post(apiurl,{action : 'stories_ajax_html', order_by:'_id',order:order,search_by:'story_title',search_string : search_string,st_limit : st_limit, ed_limit:ed_limit, limit:limit,apiurl:apiurl},function(html) {
+	$.post(apiurl,{action : 'stories_ajax_html', order_by:'_id',order:order,search_option:search_option, search_string : search_string,st_limit : st_limit, ed_limit:ed_limit, limit:limit,apiurl:apiurl},function(html) {
 		if(html){
 			$.each(html, function(i, json_obj) {
 				$("#"+json_obj.id).html(json_obj.html).fadeIn('slow');

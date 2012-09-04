@@ -107,7 +107,7 @@
 			<div>
 				<a href="javascript:void(0)" id="popup-edit">Edit</a>
 				<div id="preview-butterfly-image">
-					<img src="images/butterfly3.jpg" alt="">
+					<img src="" alt="">
 				</div>
 				<div id="preview-butterfly-title">
 					Vestibulum Interdum Magna

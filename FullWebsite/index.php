@@ -31,7 +31,7 @@
 		
 			<div class="wall-sortby-wrapper">
 				<label>Sort By:</label>
-				<select id="sort_option" onchange="loadWallMessage(1);">
+				<select id="sort_option" onchange="loadWallMessage(1,'sortsearch');">
 					<option value="-1">Newest-Oldest</option>
 					<option value="1">Oldest-Newest</option>
 				</select>
@@ -39,8 +39,8 @@
 			
 			<div class="wall-search-wrapper">
 				<form id="search_form" name="search_form">
-					<span class="error">Sorry. "Name" was not found</span>
-					<input type="text" value="Name Search" class="error" id="search_string"/>
+					<span id="search_error_span"></span>
+					<input type="text" value="Name Search" id="search_string"/>
 					<button class="btndark-black btngo" type="button" onclick="searchWallMessage();">GO</button>
 				</form>
 			</div>
@@ -49,6 +49,7 @@
 				<?php #echo $stories_C['total_records'];?>
 				<?php #foreach($stories_C['data'] as $s) : ?><?php #print_r($s);?><?php #endforeach?>
 				<input type="hidden" value="<?php echo $stories_C['total_records'];?>" name="total_records" id="total_records">
+				<input type="hidden" value="" name="search_text_for_sort" id="search_text_for_sort">
 				<div id="wallcol1"></div>
 				<div id="wallcol2"></div>
 				<div id="wallcol3"></div>
@@ -110,6 +111,6 @@
 	
 	//load message on document ready	
 	$(document).ready(function(){
-		loadWallMessage(0);
+		loadWallMessage(0,'nosearch');
 	});
 </script>

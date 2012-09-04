@@ -5,6 +5,7 @@
 	switch ($action) {
 		case "insert_story" : 
 			$data = $_POST['data'];
+			$data['story_description'] = str_replace("\n","<br>",$data['story_description']);
 			$data['ip_address'] = $_SERVER['REMOTE_ADDR'];
 			$data['action'] = 'check_profanity';
 			$profanity = check_profanity($data);

@@ -67,7 +67,7 @@
 			$file_ids = array();
 			// get GridFS files collection
 			$grid = $story->db->getGridFS();
-			foreach($grid->find(array('i_type' => 'butterfly'),array("_id"))->sort(array('order' => -1)) as $v) {
+			foreach($grid->find(array('i_type' => 'butterfly'),array("_id"))->sort(array('order' => 1)) as $v) {
 				$file_ids[] = $v->file;
 			}
 			echo json_encode($file_ids);

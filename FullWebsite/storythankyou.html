@@ -17,7 +17,8 @@
 </head>
 
 <body>
-<div class="main-wrapper">
+<div class="main-wrapper" id="thankyou-page">
+
 	<div class="header">
 		<span class="lbbc">Proudly Supported By:</span>
 		<div class="header-right">
@@ -53,7 +54,7 @@
 			<div class="thankyou-wrapper-content-middle">
 				<div>
 					<div class="thankyou-wrapper-image">
-						<img src="images/butterfly3.jpg" alt="">
+						<img src="images/butterfly3.png" alt="">
 						
 					</div>
 					<div class="thankyou-wrapper-title">Vestibulum Interdum Magna</div>
@@ -79,12 +80,22 @@
 		
 		<a href="javascript:void(0)" class="terms">Terms of Use</a>
 	</div>
+	<!-- Butterfly animation -->
+	<div id="animation-stage"></div>
+	<div id="butterfly1"></div>
+	<div id="butterfly2" ></div>
+
 	
-</div>
+</div><!-- main wrapper -->
 
 
 
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery.effects.core.min.js"></script>
+<script type="text/javascript" src="js/jQueryRotate.2.2.js"></script>
+<script type="text/javascript" src="js/jquery.runloop.1.0.3.js"></script>
+<script type="text/javascript" src="js/butterfly.animation.js"></script>
+
 <script type="text/javascript">
 if (typeof jQuery == 'undefined')
 {
