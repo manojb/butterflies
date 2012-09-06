@@ -124,4 +124,5 @@
 		<div class="bottom"></div>
 	</div> 	<!-- Preview pop up window end -->
 
+<?php include 'script.php'?>
 <?php include 'footer.php'?>

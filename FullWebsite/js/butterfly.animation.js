@@ -1,8 +1,8 @@
 $(function(){
 var  totalAnimationDuration = 11000;
 	$('#animation-stage').fadeOut(totalAnimationDuration);		   
-	animateBackground('butterfly1',3, 150, gAniInstance1);
-	animateBackground('butterfly2',3, 150, gAniInstance2);	
+	animateBackground('butterfly1',3, 150, 0);
+	animateBackground('butterfly2',3, 150, 1);	
 	
 	window.butterflyRunloop = jQuery.runloop();
 	  butterflyRunloop.addKey('5%', function(){
@@ -13,7 +13,8 @@ var  totalAnimationDuration = 11000;
 	  butterflyRunloop.addMap({
 	   '30%' : function(){rotation();},
 	   '45%' : function(){curve2();},
-	   '60%' : function(){curve11();}
+	   '60%' : function(){curve11();},
+	   '100%': function(){stopAnimation();}
 	   //'55%' : function(){curve3();}
 	  });
 	  butterflyRunloop.play(totalAnimationDuration);
@@ -85,12 +86,12 @@ function curve2(){
    });
 }
 
-var gAniInstance1,gAniInstance2;
+var gAniInstance = new Array();
 function animateBackground(objId,fps,frameDuration,aniIns){
 var $obj = $('#'+objId);
 var objWidth = $obj.width();
 var currentIteration = 0; 
-aniIns = window.setInterval(function(){
+gAniInstance[aniIns] = window.setInterval(function(){
 	if(currentIteration < fps){
 		$obj.css('background-position','-'+(currentIteration*objWidth)+ 'px 0px');
 		currentIteration++;
@@ -104,6 +105,7 @@ aniIns = window.setInterval(function(){
 	}
 	},frameDuration);
 }
-function stopAnimation(aniIns){
-	window.clearInterval(gAniInstance1);
+function stopAnimation(){
+	window.clearInterval(gAniInstance[0]);
+	window.clearInterval(gAniInstance[1]);
 }

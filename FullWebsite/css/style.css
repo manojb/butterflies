@@ -28,7 +28,7 @@ a:hover { text-decoration: underline;}
 
 /*end of reset */
 
-
+@import: url(jScrollPane.css);
 
 
 .main-wrapper { font-family:Arial, Helvetica, sans-serif; width: 810px; margin: 0 auto;}
@@ -39,9 +39,10 @@ h1 { font-family: Prata; font-size: 30px; letter-spacing: 2px; margin: 40px 0 5p
 h2 { font-family: Prata; font-size: 30px; letter-spacing: 2px; padding: 30px 0 0 0; }
 .heading-butterfly { position: absolute; background:url(../images/golden-butterfly.png) top left no-repeat; right: -102px; top: -24px; width: 97px; height: 90px;}
 .heading-butterfly-blue { position: absolute; background:url(../images/blue-butterfly.png) top left no-repeat; right: -95px; top: -24px; width: 88px; height: 72px;}
+.heading-butterfly-brown { position: absolute; background:url(../images/brown-butterfly.png) top left no-repeat; right: -95px; top: -19px; width: 86px; height: 63px;}
 
 .header { height: 101px;}
-.lbbc { display: inline-block; width: 142px; height: 40px; background:url(../images/lbbc-logo-header.png) no-repeat; color: #666666; font-family: 'Josefin Sans'; font-weight: bold; letter-spacing: normal; text-transform: uppercase; font-size: 10px; padding: 61px 0 0 130px;}
+.lbbc { float:left; width: 142px; height: 40px; background:url(../images/lbbc-logo-header.png) no-repeat; color: #666666; font-family: 'Josefin Sans'; font-weight: bold; letter-spacing: normal; text-transform: uppercase; font-size: 10px; padding: 61px 0 0 130px; font-size: 0;}
 .header-right { float: right; width: 535px; text-align: right; margin: 51px 0 0 0;}
 .sep { background:url(../images/header-border-image.png) repeat-x; height: 8px; font-size: 0; clear: both; }
 
@@ -176,7 +177,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fffbfc', end
 .date-updated { float: right; font-family: 'Josefin Sans'; font-size: 14px; line-height: 15px; margin: 14px 0 20px;}
 
 .terms-popup { padding: 49px; }
-.colored-scroll-popup {clear: both; height: 250px; overflow: auto; }
+.colored-scroll-popup {clear: both; height: 250px; overflow: auto; width: 502px;}
 .colored-scroll-popup p { margin-bottom: 20px;font-family: 'Josefin Sans'; font-size: 14px; line-height: 17px;}
 .colored-scroll-popup h4 { font-family: Prata; font-size: 15px; text-transform: uppercase; padding-top: 20px; margin-bottom: 20px;}
 /* end popup */
@@ -241,7 +242,7 @@ border-bottom: 1px solid #f7b8cc;
 
 .wall-sortby-wrapper {float: left;}
 .wall-sortby-wrapper label { font-family: 'Josefin Sans'; font-size: 12px; font-weight: bold; color: #000; display: inline-block; vertical-align: top; text-transform: uppercase; margin-top: 3px;}
-.wall-sortby-wrapper select {padding: 3px;}
+.wall-sortby-wrapper select {/*padding: 3px;*/font-family: 'Josefin Sans';}
 .btngo { padding: 0 8px 27px; height: 26px; line-height: 20px; outline: none;}
 
 
@@ -263,7 +264,7 @@ margin: 0 10px 0 0; float:left;width: 262px;
 
 .wallpost .top {height: 5px; background:url(../images/wall-top-bottom-border.png) no-repeat; font-size: 0;}
 .wallpost .bottom {height: 5px; background:url(../images/wall-top-bottom-border.png) left bottom no-repeat; font-size: 0;}
-.wallpost .content {background:url(../images/wall-content-border.png) repeat-y; padding: 0 5px;}
+.wallpost .content {background:url(../images/wall-content-border.png) repeat-y; padding: 0 5px; min-height: 255px;}
 
 .wallpost .content > div { position: relative; padding: 15px;
 background: rgb(255,251,252);
@@ -300,9 +301,32 @@ overflow: hidden;
 #wall-first-post-wrapper { height: 299px; background:url(../images/ribbon-bg.png) center center no-repeat; text-align: center; padding-top: 1px;}
 #wall-first-post-wrapper span { display: block; text-align: center; font-family: Prata; font-size: 17px; color: #000; margin: 100px 0 25px;}
 
+/* FAS support */
+.support-chicos {
+
+}
+
+
+
+/*=======================================*/
 /* buterfly animation */
 #thankyou-page { min-height: 640px; overflow: hidden; position: relative;}
 #animation-stage { background: #fff; position: absolute; z-index: 99999; width: 810px; left: 0; top: 0; height: 640px;}
 
-#butterfly1 { background:url(../images/animation/butterfly1.png) no-repeat; width: 200px; height: 166px; position: absolute; top: 640px; left: 320px;  z-index:100000;}
-#butterfly2 { background:url(../images/animation/butterfly2.png) no-repeat; width: 310px; height: 196px; position: absolute; top: 640px; left: 270px;  z-index: 100000;}
+#butterfly1 { background:url(../images/animation/butterfly2.png) no-repeat; width: 310px; height: 196px; z-index: 100003;top: 640px; left: 270px; position:absolute;
+ -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#00FFFFFF,endColorstr=#00FFFFFF)"; /* IE 8 */
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#00FFFFFF,endColorstr=#00FFFFFF); /* IE 6 & 7 */
+zoom: 1;
+}
+
+#butterfly2 { background:url(../images/animation/butterfly1.png) no-repeat; width: 200px; height: 166px; z-index:100002;top: 640px; left: 320px; position:absolute;
+ -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#00FFFFFF,endColorstr=#00FFFFFF)"; /* IE 8 */
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#00FFFFFF,endColorstr=#00FFFFFF); /* IE 6 & 7 */
+zoom: 1;
+}
+
+#butterfly3 { background:url(../images/animation/buterfly3.png) no-repeat; width: 132px; height: 96px; z-index: 100000;top: 640px; left: 356px; position:absolute; display: none;
+ -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#00FFFFFF,endColorstr=#00FFFFFF)"; /* IE 8 */
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#00FFFFFF,endColorstr=#00FFFFFF); /* IE 6 & 7 */
+zoom: 1;
+}

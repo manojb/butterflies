@@ -14,15 +14,28 @@
 	$root_dir = str_replace("/",DS,$_SERVER['DOCUMENT_ROOT']);
 	$root_dir_to_url = str_replace($root_dir,'',$current_dir);
 	$root_dir_to_url = str_replace(DS,'/',$root_dir_to_url);
+	
+	// Set home url 
 	$protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
-	$home_url = $protocol.$_SERVER['HTTP_HOST'].'/'.trim($root_dir_to_url,'/');
+	#$home_url = $protocol.$_SERVER['HTTP_HOST'].'/'.trim($root_dir_to_url,'/');
+	$get_home_url = $protocol.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+	$get_home_url = str_replace(array('.php/?','.html/?'),array('.php?','.html?'),$get_home_url);
+	$get_home_url_arr = explode("/",$get_home_url);
+	unset($get_home_url_arr[count($get_home_url_arr) -1]);
+	$home_url = implode("/",$get_home_url_arr);
 
-	DEFINE('HOMEURL',$home_url);
-	DEFINE('HOMEDIR',$current_dir);
 	
 	//Get and set from Fullwebsite environmnet file
 	require_once("config/environment.php");
 	environment::set_vars();
+	
+	if(isset(environment::$web_home_url) && (trim(environment::$web_home_url) != '')) {
+		DEFINE('HOMEURL',trim(environment::$web_home_url,"/"));
+	} else {
+		DEFINE('HOMEURL',$home_url);
+	}
+	
+	DEFINE('HOMEDIR',$current_dir);
 	DEFINE('APIURL',environment::$api_url);
 	DEFINE('FBTABURL',environment::$tab_url);
 	DEFINE('FBAPPID',environment::$fbappid);

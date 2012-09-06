@@ -67,7 +67,7 @@
 	/*
 	* @Wrap Text
 	*/
-	function chicos_wrap_text($text,$position=90) {
+	function chicos_wrap_text($text,$position=115) {
 		$length = strlen($text);
 		$str = substr($text, 0, $position); 
 		if($length > $position)

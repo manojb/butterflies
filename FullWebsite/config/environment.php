@@ -13,7 +13,6 @@ class environment
     public static $fbapikey;
     public static $fbapisecret;
     public static $api_url;
-    public static $web_home_dir;
     public static $web_home_url;
     
     /**
@@ -43,12 +42,10 @@ class environment
 				
 				/*
 				*
-				* Set home directory if you your code in any subdirectories otherwise left blank
-				* IMP :: Do not add the HTTP_HOST or DOCUMENT_ROOT (eg : http://localhost or /var/www/html/ etc)
-				* eg : Youyr code in DIr like /var/www/html/projectname/code So only set " projectname/code " with out root directory
-				* Same rule for home url
-                self::$web_home_dir = "projects/ChicosFas/Source/FullWebsite";
-                self::$web_home_url = "projects/ChicosFas/Source/FullWebsite";
+				* Set HOME URL, if left blank it will automatically calculate from the current page
+				* But it is good practice to set the home url here. If any URL rewrite rule is written in '.htaccess' file, it may reflect the calculation of home url from the current page
+				* Set full home page url eg : http://localhost/projects/ChicosFas/Source/FullWebsite
+                self::$web_home_url = "http://localhost/projects/ChicosFas/Source/FullWebsite/";
 				*/
                 break;
             
@@ -67,6 +64,15 @@ class environment
                 self::$fbappid = "354922457924244";
                 self::$fbapikey = "354922457924244";
                 self::$fbapisecret = "7fcff15387656efaab51c619bd1bfcd7";
+				
+				/*
+				*
+				* Set HOME URL, if left blank it will automatically calculate from the current page
+				* But it is good practice to set the home url here. If any URL rewrite rule is written in '.htaccess' file, it may reflect the calculation of home url from the current page
+				* Set full home page url eg : http://localhost/projects/ChicosFas/Source/FullWebsite
+                #self::$web_home_url = "http://209.239.120.86/dev/chicos_fas_lbbc/FullWebsite/";
+                self::$web_home_url = "";
+				*/
 				break;
             
             /**

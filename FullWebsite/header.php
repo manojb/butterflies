@@ -17,6 +17,7 @@
 <![endif]-->
 <script type="text/javascript">
 	var homeurl = "<?php echo HOMEURL?>";
+	var apiurl = "<?php echo APIURL?>";
 </script>
 </head>
 
