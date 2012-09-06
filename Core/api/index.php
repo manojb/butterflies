@@ -1,5 +1,5 @@
 <?php 
-	#ini_set('display_errors',1);
+	//ini_set('display_errors',1);
 	include "common.php";
 	include "API.php";
 	include "Stories.php";
@@ -27,6 +27,13 @@
 		case 'get_stories':
 			$story_list = $story->get_stories($req_vars);
 			echo json_encode($story_list);
+			break;
+		
+		case 'get_stories_array':
+			$story_list = $story->get_stories($req_vars);
+			echo "<pre>";
+			print_r($story_list);
+			echo "</pre>";
 			break;
 
 		case 'total_stories_by_name':
@@ -76,6 +83,15 @@
 		//Butterfly images
 		case "butterflyimage" :
 			include "image.php";
+			break;
+			
+		/*
+		*
+		* @Track clicks , social media share		
+		*/
+		case "track_share" :
+			$res = $story->track_share($req_vars);
+			echo json_encode($res);
 			break;
 	}
 	$jason_data = ob_get_contents();
